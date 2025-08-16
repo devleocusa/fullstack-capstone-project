@@ -1,35 +1,28 @@
-const express = require('express');
-const app = express();
-const bcryptjs = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { body, validationResult } = require('express-validator');
-const connectToDatabase = require('../models/db');
+import express from 'express';
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { body, validationResult } from 'express-validator';
+import connectToDatabase from '../models/db.js'; // Note the .js extension
+import pino from 'pino';
+import 'dotenv/config';
+
 const router = express.Router();
-const dotenv = require('dotenv');
-const pino = require('pino');  // Import Pino logger
-
-const logger = pino();  // Create a Pino logger instance
-
-dotenv.config();
+const logger = pino();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
 router.post('/register', async (req, res) => {
     try {
-        // Task 1: Connect to `giftsdb` in MongoDB through `connectToDatabase` in `db.js`
         const db = await connectToDatabase();
-
-        // Task 2: Access MongoDB collection
         const collection = db.collection("users");
-
-        //Task 3: Check for existing email
         const existingEmail = await collection.findOne({ email: req.body.email });
-
+        
+        // ... (rest of your logic)
+        
         const salt = await bcryptjs.genSalt(10);
         const hash = await bcryptjs.hash(req.body.password, salt);
         const email = req.body.email;
 
-        //Task 4: Save user details in database
         const newUser = await collection.insertOne({
             email: req.body.email,
             firstName: req.body.firstName,
@@ -52,4 +45,4 @@ router.post('/register', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

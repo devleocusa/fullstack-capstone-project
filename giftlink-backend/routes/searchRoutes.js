@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
+import connectToDatabase from '../models/db.js'; // Note the .js extension
+
 const router = express.Router();
-const connectToDatabase = require('../models/db');
 
 // Search for gifts
 router.get('/', async (req, res, next) => {
     try {
-
         // Task 1: Connect to MongoDB
         const db = await connectToDatabase();
         const collection = db.collection("gifts");
@@ -36,4 +36,4 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-module.exports = router;
+export default router;

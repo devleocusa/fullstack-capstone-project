@@ -1,5 +1,6 @@
-const connectToDatabase = require('../models/db');
-const express = require('express');
+import express from 'express';
+import connectToDatabase from '../models/db.js'; // Note the .js extension
+
 const router = express.Router();
 
 // Get all gifts
@@ -61,4 +62,4 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-module.exports = router;
+export default router;
