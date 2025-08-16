@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './DetailsPage.css';
-import { urlConfig } from '../../config';
+import {urlConfig} from '../../config';
 
 function DetailsPage() {
     const navigate = useNavigate();
@@ -92,19 +92,19 @@ function DetailsPage() {
                         )}
                     </div>
                     {/* Task 6: Display gift details */}
-                    <p><strong>Category:</strong>
+                    <p><strong>Category:</strong> 
                         {gift.category}
                     </p>
-                    <p><strong>Condition:</strong>
+                    <p><strong>Condition:</strong> 
                         {gift.condition}
                     </p>
-                    <p><strong>Date Added:</strong>
+                    <p><strong>Date Added:</strong> 
                         {gift.dateAdded}
                     </p>
-                    <p><strong>Age (Years):</strong>
+                    <p><strong>Age (Years):</strong> 
                         {gift.age}
                     </p>
-                    <p><strong>Description:</strong>
+                    <p><strong>Description:</strong> 
                         {gift.description}
                     </p>
                 </div>
